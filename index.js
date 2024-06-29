@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-
-const { heroConnect } = require('./models/hero/connect')
+const { heroConnect, heroSequelize } = require('./models/hero/connect')
+const initHeroModels = require('./models/hero/index')
 
 const envFile = process.env.ENV_FILE;
 if (envFile && envFile !== 'production') {
@@ -14,11 +14,16 @@ if (envFile && envFile !== 'production') {
 (async () => {
     // 資料庫 [Hero] 連線初始化
     await heroConnect()
+	// const models = initHeroModels(heroSequelize)
+	// const hero = await models.Heroes.findOne({})
+	// console.log(hero.dataValues)
 })()
 
 app.get('/', (req, res) => {
     return res.status(200).send('ok')
 })
+
+app.use('/heroes', require('./route/heroRoute'))
 
 // 印出目前使用的PORT以及ENV環境
 const PORT = process.env.PORT || 3000
