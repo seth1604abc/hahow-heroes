@@ -10,6 +10,15 @@ class HeroesRepository {
             }
         });
     }
+
+    async findById(id) {
+        return await this.HeroesModel.findOne({
+            where: {
+                deleted: 0,
+                id,
+            }
+        })
+    }
 }
 
 module.exports = HeroesRepository;

@@ -25,6 +25,11 @@ app.get('/', (req, res) => {
 
 app.use('/heroes', require('./route/heroRoute'))
 
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(err.statusCode || 500).json();
+});
+
 // 印出目前使用的PORT以及ENV環境
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
