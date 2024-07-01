@@ -6,8 +6,8 @@ class HeroController {
     }
   
     getHeroList = async (req, res) => {
-        const heroesList = await this.heroService.getAllHero()
-
+        const isAuth = req.isAuth ?? false
+        const heroesList = await this.heroService.getAllHero(isAuth)
         res.status(200).send({
             heroes: heroesList
         })

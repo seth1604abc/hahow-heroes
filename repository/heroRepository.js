@@ -1,6 +1,7 @@
 class HeroRepository {
-    constructor(HeroesModel) {
+    constructor(HeroesModel, ProfileModel) {
         this.HeroesModel = HeroesModel
+        this.ProfileModel = ProfileModel
     }
 
     async findAllHero() {
@@ -15,7 +16,7 @@ class HeroRepository {
         return await this.HeroesModel.findAll({
             include: [
                 {
-                    model: 'Profile'
+                    model: this.ProfileModel,
                 }
             ],
             where: {
@@ -26,6 +27,20 @@ class HeroRepository {
 
     async findById(id) {
         return await this.HeroesModel.findOne({
+            where: {
+                deleted: 0,
+                id,
+            }
+        })
+    }
+
+    async findByIdWithProfile(id) {
+        return await this.HeroesModel.findOne({
+            include: [
+                {
+                    model: this.ProfileModel,
+                }
+            ],
             where: {
                 deleted: 0,
                 id,

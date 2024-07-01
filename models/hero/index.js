@@ -8,8 +8,8 @@ function initHeroModels(sequelize) {
     const Users = _Users(sequelize, DataTypes)
     const Profile = _Profile(sequelize, DataTypes)
 
-    Heroes.hasOne(Profile, { as: 'profile', foreignKey: 'heroesId' })
-    Profile.belongsTo(Heroes, { as: 'heroesU', foreignKey: 'heroesId' })
+    Heroes.hasOne(Profile, { foreignKey: 'heroesId' })
+    Profile.belongsTo(Heroes, { foreignKey: 'heroesId' })
 
     return {
         Heroes,

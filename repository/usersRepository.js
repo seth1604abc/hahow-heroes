@@ -3,10 +3,11 @@ class UsersRepository {
         this.UsersModel = UsersModel
     }
 
-    async findByName() {
+    async findByName(name) {
         return await this.UsersModel.findOne({
             where: {
-                deleted: 0
+                deleted: 0,
+                name,
             }
         });
     }

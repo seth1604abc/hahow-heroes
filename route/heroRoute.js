@@ -9,7 +9,7 @@ const initHeroModels = require('../models/hero/index')
 const { heroSequelize } = require('../models/hero/connect')
 
 const heroesModel = initHeroModels(heroSequelize);
-const heroRepository = new _heroRepository(heroesModel.Heroes);
+const heroRepository = new _heroRepository(heroesModel.Heroes, heroesModel.Profile);
 const heroService = new _heroService(heroRepository);
 const heroController = new _heroController(heroService);
 

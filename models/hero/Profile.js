@@ -6,15 +6,30 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true,
             field: 'id'
         },
-        name: {
-            type: DataTypes.STRING,
+        heroesId: {
+            type: DataTypes.INTEGER,
             allowNull: false,
-            field: 'name'
+            field: 'heroes_id'
         },
-        image: {
-            type: DataTypes.STRING,
+        strength: {
+            type: DataTypes.INTEGER,
             allowNull: false,
-            field: 'image'
+            field: 'strength'
+        },
+        intelligence: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            field: 'intelligence'
+        },
+        agile: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            field: 'agile'
+        },
+        luck: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            field: 'luck'
         },
         deleted: {
             type: DataTypes.TINYINT,
@@ -22,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: 0
         }
     }, {
-        tableName: 'heroes',
+        tableName: 'profile',
         createdAt: 'created_at',
         updatedAt: 'updated_at',
         deletedAt: 'deleted_at',

@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-            field: 'image'
+            field: 'password'
         },
         deleted: {
             type: DataTypes.TINYINT,

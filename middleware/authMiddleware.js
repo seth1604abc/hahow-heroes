@@ -7,7 +7,6 @@ const { heroSequelize } = require('../models/hero/connect')
 const heroesModel = initHeroModels(heroSequelize);
 const _usersRepository = require('../repository/usersRepository')
 const usersRepository = new _usersRepository(heroesModel.Users)
-
 router.use(async (req, res, next) => {
     try {
         const headers = req.headers
@@ -22,11 +21,10 @@ router.use(async (req, res, next) => {
             return
         }
     
-        bcrypt.compare(headers.password, user.password).then((result) => {
+        const match = await bcrypt.compare(headers.password, user.password)
+        if (match) {
             req.isAuth = true
-        }).catch((err) => {
-            console.log(err)
-        })
+        }
         next()
 
     } catch(err) {
