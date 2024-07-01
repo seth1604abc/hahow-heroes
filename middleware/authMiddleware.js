@@ -1,12 +1,9 @@
 const express = require('express');
 const router = express.Router()
 const bcrypt = require('bcrypt')
-
-const initHeroModels = require('../models/hero/index')
-const { heroSequelize } = require('../models/hero/connect')
-const heroesModel = initHeroModels(heroSequelize);
+const { models } = require('../models/hero/db')
 const _usersRepository = require('../repository/usersRepository')
-const usersRepository = new _usersRepository(heroesModel.Users)
+const usersRepository = new _usersRepository(models.Users)
 router.use(async (req, res, next) => {
     try {
         const headers = req.headers

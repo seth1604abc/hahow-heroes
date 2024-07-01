@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const authMiddleware = require('./middleware/authMiddleware')
-const { heroConnect } = require('./models/hero/connect')
+const { heroConnect } = require('./models/hero/db')
 
 const envFile = process.env.ENV_FILE;
 if (envFile && envFile !== 'production') {

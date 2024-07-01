@@ -1,4 +1,4 @@
-const { ValidationError, NotFoundError } = require('../config/errors.config')
+const { ValidationError } = require('../config/errors.config')
 
 class HeroService {
     constructor(heroesRepository) {

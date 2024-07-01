@@ -1,6 +1,3 @@
-const { DataTypes } = require('sequelize')
-const { heroSequelize } = require('./connect')
-
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define('Heroes', {
         id: {
