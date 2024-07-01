@@ -25,7 +25,9 @@ const heroSequelize = new Sequelize({
 // 若失敗則直接跳出
 async function heroConnect() {
   try {
+    console.log(process.env.MYSQL_DB_HERO)
     await heroSequelize.authenticate()
+    await heroSequelize.sync({ force: false })
     console.log('Database [Hero] connection has been established successfully.')
   } catch (err) {
     console.log('Database [Hero] connect failed:', err)

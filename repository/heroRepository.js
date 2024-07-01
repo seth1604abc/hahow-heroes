@@ -11,6 +11,19 @@ class HeroRepository {
         });
     }
 
+    async findAllHeroWithProfile() {
+        return await this.HeroesModel.findAll({
+            include: [
+                {
+                    model: 'Profile'
+                }
+            ],
+            where: {
+                deleted: 0
+            }
+        });
+    }
+
     async findById(id) {
         return await this.HeroesModel.findOne({
             where: {

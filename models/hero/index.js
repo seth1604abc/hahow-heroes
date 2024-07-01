@@ -1,14 +1,20 @@
 const { DataTypes } = require('sequelize')
 const _Heroes = require('./Heroes')
 const _Users = require('./Users')
+const _Profile = require('./Profile')
 
 function initHeroModels(sequelize) {
     const Heroes = _Heroes(sequelize, DataTypes)
     const Users = _Users(sequelize, DataTypes)
+    const Profile = _Profile(sequelize, DataTypes)
+
+    Heroes.hasOne(Profile, { as: 'profile', foreignKey: 'heroesId' })
+    Profile.belongsTo(Heroes, { as: 'heroesU', foreignKey: 'heroesId' })
 
     return {
         Heroes,
-        Users
+        Users,
+        Profile,
     }
 }
 

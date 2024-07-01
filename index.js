@@ -16,12 +16,15 @@ if (envFile && envFile !== 'production') {
     await heroConnect()
 })()
 
+// 測試用, 或某些服務需要check health
 app.get('/', (req, res) => {
     return res.status(200).send('ok')
 })
 
+// 設置route
 app.use('/heroes', authMiddleware, require('./route/heroRoute'))
 
+// 全局捕捉error
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(err.statusCode || 500).json();
