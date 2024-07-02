@@ -15,7 +15,7 @@ const heroSequelize = new Sequelize({
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DB_HERO,
   timezone: '+00:00',
-  // logging: 'false',
+  logging: false,
   dialectOptions: {
     ssl: process.env.MYSQL_SSL == 1 ? true : undefined
   }

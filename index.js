@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors')
 const authMiddleware = require('./middleware/authMiddleware')
 const { heroConnect, models, heroSequelize } = require('./models/hero/db')
+const bcrypt = require('bcrypt')
 
 const envFile = process.env.ENV_FILE;
 if (envFile && envFile !== 'production') {
@@ -18,10 +19,15 @@ if (envFile && envFile !== 'production') {
 	// 資料庫 [Hero] 資料表Sync
 	if (process.env.MYSQL_SYNC == 1) {
 		await heroSequelize.sync({ force: true })
+		// 建立測試資料
 		await models.Heroes.create({ name: 'Daredevil', image: 'http://i.annihil.us/u/prod/marvel/i/mg/6/90/537ba6d49472b/standard_xlarge.jpg' })
 		await models.Profile.create({ heroesId: 1, strength: 2, intelligence: 7, agile: 9, luck: 7 })
 		await models.Heroes.create({ name: 'Thor', image: 'http://x.annihil.us/u/prod/marvel/i/mg/5/a0/537bc7036ab02/standard_xlarge.jpg' })
 		await models.Profile.create({ heroesId: 2, strength: 8, intelligence: 2, agile: 5, luck: 9 })
+
+		const password = 'rocks'
+		const hashPassword = await bcrypt.hash(password, 10)
+		await models.Users.create({ name: 'hahow', password: hashPassword })
 	}
 })()
 
@@ -47,15 +53,15 @@ app.use((err, req, res, next) => {
 // 印出目前使用的PORT以及ENV環境
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
-    // console.log();
-	// console.log('+' + ''.padEnd(120, '=') + '+');
-	// console.log(
-	// 	''.padEnd(20, ' '),
-	// 	`PORT: [ ${PORT} ] -`,
-	// 	`ENV: [ ${process.env.NODE_ENV} ]`,
-	// 	''.padEnd(20, ' '),
-	// );
-	// console.log('+' + ''.padEnd(120, '=') + '+');
+    console.log();
+	console.log('+' + ''.padEnd(120, '=') + '+');
+	console.log(
+		''.padEnd(20, ' '),
+		`PORT: [ ${PORT} ] -`,
+		`ENV: [ ${process.env.NODE_ENV} ]`,
+		''.padEnd(20, ' '),
+	);
+	console.log('+' + ''.padEnd(120, '=') + '+');
 })
 
 module.exports = app
