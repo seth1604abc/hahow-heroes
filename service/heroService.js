@@ -1,4 +1,4 @@
-const { ValidationError } = require('../config/errors.config')
+const { ValidationError, NotFoundError } = require('../config/errors.config')
 
 class HeroService {
     constructor(heroesRepository) {
@@ -41,10 +41,32 @@ class HeroService {
         }
 
         if (isAuth) {
-            return await this.heroesRepository.findByIdWithProfile(id)
+            const hero = await this.heroesRepository.findByIdWithProfile(id)
+            if (!hero) {
+                throw new NotFoundError('hero does not exist')
+            }
+            return {
+                id: hero.id.toString(),
+                name: hero.name,
+                image: hero.image,
+                profile: hero.Profile ? {
+                    str: hero.Profile.strength,
+                    int: hero.Profile.intelligence,
+                    agi: hero.Profile.agile,
+                    luk: hero.Profile.luck,
+                } : undefined
+            }
         }
 
-        return await this.heroesRepository.findById(id)
+        const hero = await this.heroesRepository.findById(id)
+        if (!hero) {
+            throw new NotFoundError('hero does not exist')
+        }
+        return {
+            id: hero.id.toString(),
+            name: hero.name,
+            image: hero.image
+        }
     }
 }
   

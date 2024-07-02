@@ -4,7 +4,7 @@
   "description": "hahow backend recruit",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "cross-env ENV_FILE=production && node index.js",
     "start:dev": "cross-env ENV_FILE=development nodemon index.js"
   },
@@ -12,10 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mysql2": "^3.10.1",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "supertest": "^7.0.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

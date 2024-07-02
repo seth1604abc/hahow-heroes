@@ -9,6 +9,7 @@ router.use(async (req, res, next) => {
         const headers = req.headers
         if (!headers.name || !headers.password) {
             next()
+            return
         }
         
         // 如果有name跟password則開始驗證

@@ -11,7 +11,8 @@ const heroRepository = new _heroRepository(models.Heroes, models.Profile);
 const heroService = new _heroService(heroRepository);
 const heroController = new _heroController(heroService);
 
-router.get('/', asyncHandler(heroController.getHeroList));
 router.get('/:id', asyncHandler(heroController.getSingleHero));
+router.get('/', asyncHandler(heroController.getHeroList));
+
 
 module.exports = router
