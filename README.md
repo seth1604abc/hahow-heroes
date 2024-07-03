@@ -35,6 +35,8 @@ MYSQL_SYNC=
 請按照資料夾內 .example.env
 自行創建 .env 檔案
 若需要 development 或是 stage 環境則自行按照 package.json script 建立
+如: stage環境則建立檔案 ".env.stage"
+script為 "start:stage": "cross-env ENV_FILE=stage nodemon index.js"
 
 ## Start
 
@@ -91,34 +93,34 @@ project/
 
 ## Libraries
 
--   bcrypt
-    用於hash加密
--   cors
-    cors設定
--   dotenv
-    環境變數設定
--   express
-    http server框架
--   mysql2
-    連接mysql
--   sequelize
-    Node.js 的 ORM, 用於跟資料庫互動
--   supertest
-    測試程式用
--   cross-env
-    用於處理跨平台script, 像是 mac 跟 windows
--   jest
-    測試程式用
--   nodemon
-    開發用, 監測文件, 若有改變可自動重啟
--   prettier
-    為程式碼規範排版用
--   eslint-plugin-prettier
-    為程式碼規範排版用
--   eslint
-    為程式碼規範排版用
--   eslint-config-prettier
-    為程式碼規範排版用
+- bcrypt
+  用於hash加密
+- cors
+  cors設定
+- dotenv
+  環境變數設定
+- express
+  http server框架
+- mysql2
+  連接mysql
+- sequelize
+  Node.js 的 ORM, 用於跟資料庫互動
+- supertest
+  測試程式用
+- cross-env
+  用於處理跨平台script, 像是 mac 跟 windows
+- jest
+  測試程式用
+- nodemon
+  開發用, 監測文件, 若有改變可自動重啟
+- prettier
+  為程式碼規範排版用
+- eslint-plugin-prettier
+  為程式碼規範排版用
+- eslint
+  為程式碼規範排版用
+- eslint-config-prettier
+  為程式碼規範排版用
 
 ## 註解
 
