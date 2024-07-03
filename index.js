@@ -32,7 +32,14 @@ if (envFile && envFile !== 'production') {
 })()
 
 app.use(express.json());
-app.use(cors())
+
+const corsOptions = {
+	origin: 'http://localhost:8080',
+	methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+	allowedHeaders: ['Content-Type', 'Authorization', 'Name', 'Password'],
+	credentials: true
+};
+app.use(cors(corsOptions))
 
 
 // 測試用, 或某些服務需要check health
